@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Promethee</title>
+        <link rel="stylesheet" href="main.css">
+
+        <!-- font awesome -->
+        <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+
+        <!--<script src="https://cdn.jsdelivr.net/npm/pca-js@1.0.0/pca.min.js"></script>-->
+        <!-- We will use a local version -->
+        <script src="src/pca.js"></script>
+
+        <!-- draw svg -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/3.0.16/svg.min.js"></script>
+
+        <!--Plugin CSS file with desired skin-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/css/ion.rangeSlider.min.css"/>
+        
+        <!--jQuery-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        
+        <!--Plugin JavaScript file-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ion-rangeslider/2.3.1/js/ion.rangeSlider.min.js"></script>
+    
+
+        <!-- code editor -->
+        <link rel="stylesheet" type="text/css" href="codemirror/codemirror.css">
+        <link rel="stylesheet" type="text/css" href="codemirror/theme/dracula.css">
+        <link rel="stylesheet" type="text/css" href="codemirror/theme/mbo.css">
+        <link rel="stylesheet" type="text/css" href="codemirror/theme/mdn-like.css">
+        <link rel="stylesheet" type="text/css" href="codemirror/theme/neo.css">
+        <script src="codemirror/codemirror.js"></script>
+        <script src="codemirror/mode/javascript.js"></script>
+        <script src="codemirror/activeline.js"></script>
+        <script src="codemirror/matchbrackets.js"></script>
+
+        <!-- script personnel -->
+        <script src="src/vector.js"></script>
+        <script src="src/promethee.js"></script>
+        <script src="src/drawSVG.js"></script>
+    </head>
+    <body class="font-awesome">
+        <div class="nb-header">
+            <span class="title">PROMETHEE II - GAIA Plane - PROMETHEE VI</span>
+        </div>
+        <div class="container scrollable-container">
+            <div class="" style="width: 33vw;">
+                <!-- code editor -->
+                <div class="nb-card" style="overflow:hidden;">
+                    <div class="title">Description du problème
+                        <div class="button right" onclick="launchProblem();"> Lancer <i class="fa fa-play"></i></div>
+                        <div class="button right" onclick="autoComplete();"><i class="fa fa-magic"></i></div>
+                    </div>
+                    <textarea id="code" name="code" class="scrollable-container" style="width: 100px; height: 450px;">
+var ProblemeDescription = {
+  // cliquer sur la baguette magique pour formatter automatiquement la description.
+  criteres: [3],
+  solutions: [5]
+};</textarea>
+                </div>
+                <!-- profiles of solutions -->
+                <div class="nb-card">
+                    <div class="title">Profiles des solutions</div>
+                    <div id="solutions_profiles" class="scrollable-container" style="overflow-x: hidden; overflow-y: scroll; max-height: 500px;">
+
+                    </div>
+                </div>
+            </div>
+            <div class="col -l">
+                <!-- GAIA plane -->
+                <div class="nb-card">
+                    <div class="title">Plan GAIA et Promethee VI</div>
+                    <div id="GAIAPLANE" class="canvasSVG" style="width: 100%; height: 400px;">
+                        <div class="controls">
+                            <div onclick="ProblemeDescription.zoom += .1; gaia_plane.draw(ProblemeDescription.zoom);"><span class="fa fa-plus"></span></div>
+                            <div onclick="if (ProblemeDescription.zoom >= 0.1) { ProblemeDescription.zoom -= .1; gaia_plane.draw(ProblemeDescription.zoom); }"><span class="fa fa-minus"></span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- promethee II axis -->
+                <div class="nb-card">
+                    <div class="title">Axe prométhée - classement des solutions</div>
+                    <div id="PROMETHEEAXIS" class="canvasSVG" style="width: 100%; height: 6.25rem;"></div>
+                    <div id="PROMETHEESEE" class="canvasSVG" style="width: 100%;"></div>
+                    <div id="promethee_result"><!-- here be dragons --></div>
+                </div>
+            </div>
+            <div class="col -s">
+                <!-- selecteur de poids -->
+                <div class="nb-card">
+                    <div class="title">Modification des poids
+                        <div class="button right"><i class="fa fa-crosshairs"></i></div>
+                    </div>
+                    <div id="sliders">
+                        <div class="critere">
+                            <div class="name"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="main.js"></script>
+    </body>
+</html>
